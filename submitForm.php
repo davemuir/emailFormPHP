@@ -62,11 +62,11 @@ if(isset($_POST['email'])) {
     $email_message .= "Comments: ".clean_string($comments)."\n";
      
      
-// create email headers
-$headers = 'From: '.$email_from."\r\n".
-'Reply-To: '.$email_from."\r\n" .
-'X-Mailer: PHP/' . phpversion();
-@mail($email_to, $email_subject, $email_message, $headers);  
+    	// create email headers
+	$headers = 'From: '.$email_from."\r\n".
+		'Reply-To: '.$email_from."\r\n" .
+		'X-Mailer: PHP/' . phpversion();
+		mail($email_to, $email_subject, $email_message, $headers);  
 ?>
  
 <!-- include your own success html here -->
