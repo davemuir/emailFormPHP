@@ -63,7 +63,7 @@ if(isset($_POST['email'])) {
      
      
     	// create email headers
-	$headers = 'From:'.$email_from."\r\n".'Reply-To:'.$email_from."\r\n" .'X-Mailer: PHP/' . phpversion();
+	$headers = 'From:example@gmail.com'."\r\n".'Reply-To:example@gmail.com'."\r\n" .'X-Mailer: PHP/' . phpversion();
 
 	
 	mail('davidmuirdesign@gmail.com', $email_subject, $email_message, $headers);  
