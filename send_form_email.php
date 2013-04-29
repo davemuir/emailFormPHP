@@ -63,16 +63,14 @@ if(isset($_POST['email'])) {
      
      
     	// create email headers
-	$headers = 'From:example@gmail.com'."\r\n".'Reply-To:example@gmail.com'."\r\n" .'X-Mailer: PHP/' . phpversion();
-
-	
-	mail($to, $subject, $message, $headers);  
+		
+	mail($to, $subject, $message);  
 	
 	 echo "email processed bitch<br /><br /><a href='http://ecommercetesting.herokuapp.com'>back to soundsupreme</a>";
 	 echo "from:".$email_from."\n";
 	 echo "to:".$to."\n";
 	 echo "message:".$message."\n";
-	 echo "headers".$headers."\n";
+	
         die();
 }
 ?>
