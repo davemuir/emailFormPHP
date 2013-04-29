@@ -61,16 +61,22 @@ if(isset($_POST['email'])) {
     $message .= "Telephone: ".clean_string($telephone)."\n";
     $message .= "Comments: ".clean_string($comments)."\n";
      
-     
+     // Fix any bare linefeeds in the message to make it RFC821 Compliant. 
+     $message = preg_replace("#(?<!\r)\n#si", "\r\n", $message); 
+    
+          
     	// create email headers
 	$headers   = array();
 		$headers[] = "MIME-Version: 1.0";
 		$headers[] = "Content-type: text/plain; charset=iso-8859-1";
 		$headers[] = "From: Sender Name <sender@domain.com>";
-		$headers[] = "Bcc: JJ Chong <bcc@domain2.com>";
-		$headers[] = "Reply-To: Recipient Name <receiver@domain3.com>";
 		$headers[] = "Subject: {$subject}";
 		$headers[] = "X-Mailer: PHP/".phpversion();
+		$headers[] = "\n";
+	
+	// Make sure there are no bare linefeeds in the headers 
+     $headers = preg_replace('#(?<!\r)\n#si', "\r\n", $headers); 
+
 	
 	mail($to, $subject, $message, implode("\r\n", $headers)); 
 	
@@ -79,7 +85,7 @@ if(isset($_POST['email'])) {
 	 echo "to:".$to."\n";
 	 echo "message:".$message."\n";
 	 echo "headers".$headers."\n";
-        die();
+
 }
 ?>
  
