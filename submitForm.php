@@ -64,13 +64,17 @@ if(isset($_POST['email'])) {
      
     	// create email headers
 	$headers = 'From:'.$email_from."\r\n".
-		'Reply-To:'.$email_from."\r\n".
+		'Reply-To:'.$email_from."\r\n" .
 		'X-Mailer: PHP/' . phpversion();
+		
 	mail($email_to, $email_subject, $email_message, $headers);  
 	
-	 echo "email processed<br /><br />Thank you for contacting us. We will be in touch with you very soon.
-			 <a href='http://ecommercetesting.herokuapp.com'>back to soundsupreme</a>";
+	 echo "email processed<br /><br /><a href='http://ecommercetesting.herokuapp.com'>back to soundsupreme</a>";
         die();
 
 ?>
  
+
+<?php
+}
+?>
