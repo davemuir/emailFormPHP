@@ -2,8 +2,8 @@
 if(isset($_POST['email'])) {
      
     // EDIT THE 2 LINES BELOW AS REQUIRED
-    $email_to = "davidmuirdesign@gmail.com";
-    $email_subject = "Ordering form for reeds";
+    $to = "davidmuirdesign@gmail.com";
+    $subject = "Ordering form for reeds";
      
      
     function died($error) {
@@ -48,25 +48,25 @@ if(isset($_POST['email'])) {
   if(strlen($error_message) > 0) {
     died($error_message);
   }
-    $email_message = "Form details below.\n\n";
+    $message = "Form details below.\n\n";
      
     function clean_string($string) {
       $bad = array("content-type","bcc:","to:","cc:","href");
       return str_replace($bad,"",$string);
     }
      
-    $email_message .= "First Name: ".clean_string($first_name)."\n";
-    $email_message .= "Last Name: ".clean_string($last_name)."\n";
-    $email_message .= "Email: ".clean_string($email_from)."\n";
-    $email_message .= "Telephone: ".clean_string($telephone)."\n";
-    $email_message .= "Comments: ".clean_string($comments)."\n";
+    $message .= "First Name: ".clean_string($first_name)."\n";
+    $message .= "Last Name: ".clean_string($last_name)."\n";
+    $message .= "Email: ".clean_string($email_from)."\n";
+    $message .= "Telephone: ".clean_string($telephone)."\n";
+    $message .= "Comments: ".clean_string($comments)."\n";
      
      
     	// create email headers
 	$headers = 'From:example@gmail.com'."\r\n".'Reply-To:example@gmail.com'."\r\n" .'X-Mailer: PHP/' . phpversion();
 
 	
-	mail('davidmuirdesign@gmail.com', $email_subject, $email_message, $headers);  
+	mail('davidmuirdesign@gmail.com', $subject, $message, $headers);  
 	
 	 echo "email processed<br /><br /><a href='http://ecommercetesting.herokuapp.com'>back to soundsupreme</a>";
         die();
