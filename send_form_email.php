@@ -69,6 +69,7 @@ if(isset($_POST['email'])) {
 	mail('davidmuirdesign@gmail.com', $subject, $message, $headers);  
 	
 	 echo "email processed bitch<br /><br /><a href='http://ecommercetesting.herokuapp.com'>back to soundsupreme</a>";
+	 echo "from".$email_from."";
         die();
 }
 ?>
