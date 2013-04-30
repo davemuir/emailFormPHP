@@ -73,24 +73,37 @@ if(isset($_POST['email'])) {
     
           
     	// create email headers
-		$headers = 'MIME-Version:1.0'. "\n";
-		$headers .= 'Content-type:text/html; charset=utf-8'. "\n" ;
-		$headers .= 'From:Sender Name <sender@domain.com>' . "\n";
-		$headers .= 'Subject:'.$subject. "\n";
-		$headers .= "X-Mailer: PHP/".phpversion();
+		//$headers = 'MIME-Version:1.0'. "\n";
+		//$headers .= 'Content-type:text/html; charset=utf-8'. "\n" ;
+		//$headers .= 'From:Sender Name <sender@domain.com>' . "\n";
+		//$headers .= 'Subject:'.$subject. "\n";
+		//$headers .= "X-Mailer: PHP/".phpversion();
 		
-	
+		
+		 $headers    = array
+    (
+        'MIME-Version: 1.0',
+        'Content-Type: text/html; charset="UTF-8";',
+        'Content-Transfer-Encoding: 7bit',
+        'Date: ' . date('r', $_SERVER['REQUEST_TIME']),
+        'Message-ID: <' . $_SERVER['REQUEST_TIME'] . md5($_SERVER['REQUEST_TIME']) . '@' . $_SERVER['SERVER_NAME'] . '>',
+        'From: ' . $from,
+        'Reply-To: ' . $from,
+        'Return-Path: ' . $from,
+        'X-Mailer: PHP v' . phpversion(),
+        'X-Originating-IP: ' . $_SERVER['SERVER_ADDR'],
+    );
 	// Make sure there are no bare linefeeds in the headers 
   //  $headers = preg_replace('#(?<!\r)\n#si', "\n", $headers); 
 
 	
-	mail($to, $subject, $message, $headers);   //implode("\n", $headers)); 
+	mail($to, $subject, $message, implode("\n", $headers)); 
 	
 	 echo "email processed bitch<br /><br /><a href='http://ecommercetesting.herokuapp.com'>back to soundsupreme</a><br />";
-	 echo "from:".$email_from." <br />";
-	 echo "to:".$to."<br />";
-	 echo "message:".$message."<br />";
-	 echo "headers".$headers;
+	// echo "from:".$email_from." <br />";
+	// echo "to:".$to."<br />";
+	// echo "message:".$message."<br />";
+	// echo "headers".$headers;
 
 
 ?>
