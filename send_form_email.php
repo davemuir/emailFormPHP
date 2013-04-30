@@ -54,7 +54,7 @@ if(isset($_POST['email'])) {
 						<title>Sound supreme orders</title>
 					</head>
 					<body>
-						<p>Form details below'."\n\n";
+						<p>Form details below'."\n";
      
     function clean_string($string) {
       $bad = array("content-type","bcc:","to:","cc:","href");
@@ -69,13 +69,13 @@ if(isset($_POST['email'])) {
     $message .= "</p></body></html>"."\n";
     
      // Fix any bare linefeeds in the message to make it RFC821 Compliant. 
-     $message = preg_replace("#(?<!\r)\n#si", "\n", $message); 
+     //$message = preg_replace("#(?<!\r)\n#si", "\n", $message); 
     
           
     	// create email headers
-		$headers = 'MIME-Version: 1.0'. "\n";
-		$headers .= 'Content-type: text/html; charset=utf-8'. "\n" ;
-		$headers .= 'From: Sender Name <sender@domain.com>' . "\n";
+		$headers = 'MIME-Version:1.0'. "\n";
+		$headers .= 'Content-type:text/html; charset=utf-8'. "\n" ;
+		$headers .= 'From:Sender Name <sender@domain.com>' . "\n";
 		$headers .= 'Subject:'.$subject. "\n";
 		$headers .= "X-Mailer: PHP/".phpversion();
 		
@@ -84,7 +84,7 @@ if(isset($_POST['email'])) {
   //  $headers = preg_replace('#(?<!\r)\n#si', "\n", $headers); 
 
 	
-	mail($to, $subject, $message);   //implode("\n", $headers)); 
+	mail($to, $subject, $message, $headers);   //implode("\n", $headers)); 
 	
 	 echo "email processed bitch<br /><br /><a href='http://ecommercetesting.herokuapp.com'>back to soundsupreme</a><br />";
 	 echo "from:".$email_from." <br />";
