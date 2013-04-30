@@ -48,11 +48,13 @@ if(isset($_POST['email'])) {
   if(strlen($error_message) > 0) {
     died($error_message);
   }
-    $message = "<html>
-<head>
-  <title>Birthday Reminders for August</title>
-</head>
-<body><p>Form details below.\n\n";
+    $message = '<html>
+    				<head>
+						<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+						<title>Sound supreme orders</title>
+					</head>
+					<body>
+						<p>Form details below'."\n\n";
      
     function clean_string($string) {
       $bad = array("content-type","bcc:","to:","cc:","href");
@@ -71,16 +73,15 @@ if(isset($_POST['email'])) {
     
           
     	// create email headers
-    	$headers   = array();
-		$headers[] = "MIME-Version: 1.0";
-		$headers[] = "Content-type: text/html; charset=iso-8859-1";
-		$headers[] = "From: Sender Name <sender@domain.com>";
-		$headers[] = "Subject:".$subject;
-		$headers[] = "X-Mailer: PHP/".phpversion();
-		$headers[] = "\n";
+		$headers = 'MIME-Version: 1.0'. "\r\n";
+		$headers .= 'Content-type: text/html; charset=utf-8'. "\r\n" ;
+		$headers .= 'From: Sender Name <sender@domain.com>' . "\r\n";
+		$headers .= 'Subject:'.$subject. "\r\n";
+		$headers .= "X-Mailer: PHP/".phpversion();
+		
 	
 	// Make sure there are no bare linefeeds in the headers 
-    $headers = preg_replace('#(?<!\r)\n#si', "\r\n", $headers); 
+  //  $headers = preg_replace('#(?<!\r)\n#si', "\r\n", $headers); 
 
 	
 	mail($to, $subject, $message);   //implode("\r\n", $headers)); 
