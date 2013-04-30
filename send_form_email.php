@@ -80,10 +80,10 @@ if(isset($_POST['email'])) {
 	
 	mail($to, $subject, $message);   //implode("\r\n", $headers)); 
 	
-	 echo "email processed bitch<br /><br /><a href='http://ecommercetesting.herokuapp.com'>back to soundsupreme</a>";
+	 echo "email processed bitch<br /><br /><a href='http://ecommercetesting.herokuapp.com'>back to soundsupreme</a><br />";
 	 echo "from:".$email_from."\n <br />";
-	 echo "to:".$to."\n";
-	 echo "message:".$message."\n";
+	 echo "to:".$to."\n<br />";
+	 echo "message:".$message."\n<br />";
 	// echo "headers".$headers."\n";
 
 
