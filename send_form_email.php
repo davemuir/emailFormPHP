@@ -48,7 +48,11 @@ if(isset($_POST['email'])) {
   if(strlen($error_message) > 0) {
     died($error_message);
   }
-    $message = "Form details below.\n\n";
+    $message = "<html>
+<head>
+  <title>Birthday Reminders for August</title>
+</head>
+<body><p>Form details below.\n\n";
      
     function clean_string($string) {
       $bad = array("content-type","bcc:","to:","cc:","href");
@@ -60,7 +64,8 @@ if(isset($_POST['email'])) {
     $message .= "Email: ".clean_string($email_from)."\n";
     $message .= "Telephone: ".clean_string($telephone)."\n";
     $message .= "Comments: ".clean_string($comments)."\n";
-     
+    $message .= "</p></body></html>"."\n";
+    
      // Fix any bare linefeeds in the message to make it RFC821 Compliant. 
      $message = preg_replace("#(?<!\r)\n#si", "\r\n", $message); 
     
@@ -68,7 +73,7 @@ if(isset($_POST['email'])) {
     	// create email headers
     	$headers   = array();
 		$headers[] = "MIME-Version: 1.0";
-		$headers[] = "Content-type: text/plain; charset=iso-8859-1";
+		$headers[] = "Content-type: text/html; charset=iso-8859-1";
 		$headers[] = "From: Sender Name <sender@domain.com>";
 		$headers[] = "Subject:".$subject;
 		$headers[] = "X-Mailer: PHP/".phpversion();
