@@ -8,7 +8,7 @@ if(isset($_POST['email'])) {
      
     function died($error) {
         // your error code can go here
-        echo "We are very sorry, but there were error(s) found with the form you submitted. ";
+        echo "sorry, but there were error(s) found with the form you submitted. ";
         echo "These errors appear below.<br /><br />";
         echo $error."<br /><br />";
         echo "Please go back and fix these errors.<br /><br />";
@@ -69,28 +69,28 @@ if(isset($_POST['email'])) {
     $message .= "</p></body></html>"."\n";
     
      // Fix any bare linefeeds in the message to make it RFC821 Compliant. 
-     $message = preg_replace("#(?<!\r)\n#si", "\r\n", $message); 
+     $message = preg_replace("#(?<!\r)\n#si", "\n", $message); 
     
           
     	// create email headers
-		$headers = 'MIME-Version: 1.0'. "\r\n";
-		$headers .= 'Content-type: text/html; charset=utf-8'. "\r\n" ;
-		$headers .= 'From: Sender Name <sender@domain.com>' . "\r\n";
-		$headers .= 'Subject:'.$subject. "\r\n";
+		$headers = 'MIME-Version: 1.0'. "\n";
+		$headers .= 'Content-type: text/html; charset=utf-8'. "\n" ;
+		$headers .= 'From: Sender Name <sender@domain.com>' . "\n";
+		$headers .= 'Subject:'.$subject. "\n";
 		$headers .= "X-Mailer: PHP/".phpversion();
 		
 	
 	// Make sure there are no bare linefeeds in the headers 
-  //  $headers = preg_replace('#(?<!\r)\n#si', "\r\n", $headers); 
+  //  $headers = preg_replace('#(?<!\r)\n#si', "\n", $headers); 
 
 	
-	mail($to, $subject, $message);   //implode("\r\n", $headers)); 
+	mail($to, $subject, $message);   //implode("\n", $headers)); 
 	
 	 echo "email processed bitch<br /><br /><a href='http://ecommercetesting.herokuapp.com'>back to soundsupreme</a><br />";
-	 echo "from:".$email_from."\n <br />";
-	 echo "to:".$to."\n<br />";
-	 echo "message:".$message."\n<br />";
-	 echo "headers".$headers."\n";
+	 echo "from:".$email_from." <br />";
+	 echo "to:".$to."<br />";
+	 echo "message:".$message."<br />";
+	 echo "headers".$headers;
 
 
 ?>
