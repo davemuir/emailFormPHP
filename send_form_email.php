@@ -68,7 +68,7 @@ if(isset($_POST['email'])) {
     $message .= "</p></body></html>"."\n";
     
      // Fix any bare linefeeds in the message to make it RFC821 Compliant. 
-     //$message = preg_replace("#(?<!\r)\n#si", "\n", $message); 
+     $message = preg_replace("#(?<!\r)\n#si", "\n", $message); 
     
           
     	// create email headers
@@ -79,7 +79,7 @@ if(isset($_POST['email'])) {
 		$headers .= "X-Mailer: PHP/".phpversion();
 		
 		// Make sure there are no bare linefeeds in the headers 
-  //  $headers = preg_replace('#(?<!\r)\n#si', "\n", $headers); 
+		$headers = preg_replace('#(?<!\r)\n#si', "\n", $headers); 
 
 	
 	mail($to, $subject, $message, $headers); 
